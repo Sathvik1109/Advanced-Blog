@@ -13,18 +13,20 @@ export class AuthService {
   }
 
   createAccount = async ({ email, password, name }) => {
-    const userAccount = await this.account.create({
-      userId: ID.unique(),
-      email,
-      password,
-      name,
-    });
+    try {
+      const userAccount = await this.account.create({
+        userId: ID.unique(),
+        email,
+        password,
+        name,
+      });
 
-    if (userAccount) {
-      // Call another method
-      return this.login({ email, password });
-    } else {
-      return userAccount;
+      if (userAccount) {
+        // Call another method
+        return this.login({ email, password });
+      }
+    } catch (error) {
+      console.log("The user already exists", error);
     }
   };
 
