@@ -59,7 +59,7 @@ const Login = () => {
               {...register("email", {
                 required: true,
                 validate: {
-                  matchPattern: (v) =>
+                  Pattern: (v) =>
                     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
                     "Email address must be valid",
                 },
